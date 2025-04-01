@@ -24,9 +24,12 @@ const HomePage = () => {
   const [priceOrder, setPriceOrder] = useState("asc");
 
   useEffect(() => {
-    let filtered = products.filter((product) =>
+    let filtered = Array.isArray(products)
+  ? products.filter((product) =>
       product.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    )
+  : [];
+
 
     if (priceOrder === "asc") {
       filtered.sort((a, b) => a.price - b.price);

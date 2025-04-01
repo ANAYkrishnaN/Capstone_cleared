@@ -22,9 +22,10 @@ const CategoryPage = () => {
   }, [fetchProductsByCategory, category]);
 
   useEffect(() => {
-    let filtered = products.filter((product) =>
-      product.name.toLowerCase().includes(searchQuery.toLowerCase())
+    const filteredCategoryProducts = (categoryProducts || []).filter((product) =>
+      product.category === selectedCategory
     );
+    
 
     if (priceOrder === "asc") {
       filtered.sort((a, b) => a.price - b.price);
